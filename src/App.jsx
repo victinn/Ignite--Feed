@@ -20,7 +20,7 @@ export function App() {
           <Post author="Outra pessoa" content="uiui"/>
         </main>
       </div>
-    </div>  
+    </div> 
   )
 }
 
