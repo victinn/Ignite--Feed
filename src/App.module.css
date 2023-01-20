@@ -8,3 +8,13 @@
     gap: 2rem;
     align-items: flex-start; /* pra ficar alinhado com o topo, senao força a sidebar a ter a mesma altura que o main */
 }
+
+@media (max-width: 768px){ /* quando a tela for menor que esse número */
+    html{
+        font-size: 87.5%;
+    }
+
+    .wrapper{
+        grid-template-columns: 1fr; /* terá somente uma coluna */
+    }
+}
