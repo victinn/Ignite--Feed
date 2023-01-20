@@ -14,16 +14,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-}
 
-.profile img{ /* imagem do perfil */
-    margin-top: -2.5rem;
-    width: 3.75rem;
-    height: 3.75rem;
-    border-radius: 8px;
-    border: 1px solid var(--gray-800);
-    outline: 2px solid var(--green-500);
-    box-sizing: initial; /* não comprimir o elemento por causa do border, outline, padding etc */
+    margin-top: -2.3rem;
 }
 
 .profile strong{ /* nome do perfil */
