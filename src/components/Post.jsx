@@ -4,8 +4,13 @@ import { Avatar } from "./Avatar"
 import { formatDistanceToNow } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
 import { Link } from "phosphor-react";
+import { useState } from "react";
 
 export function Post({ author, publishedAt, content }){
+    const [comments, setComments] = useState([
+        1,
+        2,
+    ])
     const publishedDateFormated = new Intl.DateTimeFormat('pt-BR',{
         day: '2-digit',
         month: 'short',
@@ -17,6 +22,12 @@ export function Post({ author, publishedAt, content }){
         locale: ptBR,
         addSuffix: true
     })
+
+    function handleCreateNewComment(){
+        event.preventDefault() /* impedir comportamento padrão do html de redirecionar */
+        console.log("Oi")
+        setComments([...comments, comments.length + 1])
+    }
 
     return (
         <article className={styles.post}>
@@ -47,7 +58,7 @@ export function Post({ author, publishedAt, content }){
             </div>
 
 
-            <form className={styles.comentForm}>
+            <form onSubmit={handleCreateNewComment} className={styles.comentForm}>
                 <strong> Deixe seu Feedback </strong>
         
                 <textarea placeholder="Deixe um comentário"/>
@@ -58,9 +69,9 @@ export function Post({ author, publishedAt, content }){
             </form>
 
             <div className={styles.commentList}>
-                <Comment />
-                <Comment />
-                <Comment />
+                {comments.map(comment => {
+                    return <Comment />
+                })}
             </div>
         </article>
     )
