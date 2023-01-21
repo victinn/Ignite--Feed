@@ -4,6 +4,40 @@ import styles from "./App.module.css"
 import { Header } from "./components/Header"
 import { Sidebar } from "./components/Sidebar"
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatar: "https://avatars.githubusercontent.com/u/87485590?v=4",
+      name: "Vitin",
+      role: "Full-Stack Dev"
+    },
+    content: [
+      {type: "paragrraph", content:"Fala galeraa 👋"},
+      {type: "paragraph", content:"Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"},
+
+      {type:"link", content: "👉 jane.design/doctorcare"},
+    ],
+    publishedAt: new Date('2023-01-21 09:42:00'),
+  },
+
+  {
+    id: 2,
+    author: {
+      avatar: "https://avatars.githubusercontent.com/u/97693994?v=4",
+      name: "Otavio",
+      role: "Full-Stack Dev"
+    },
+    content: [
+      {type: "paragrraph", content:"Fala galeraa 👋"},
+      {type: "paragraph", content:"Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"},
+
+      {type:"link", content: "👉 jane.design/doctorcare"},
+    ],
+    publishedAt: new Date('2023-01-23 12:30:00'),
+  }
+]
+
 export function App() {
 
   return (
@@ -12,12 +46,15 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post 
-            author="Vitin" 
-            content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo mollitia repellat amet iusto. Enim, tempore totam ducimus ipsum placeat consequatur vero natus minima blanditiis dolore sint voluptatibus? Autem, ad perspiciatis?"
-          />
-
-          <Post author="Outra pessoa" content="uiui"/>
+          {posts.map(post => {
+            return (
+              <Post 
+                  author = {post.author}
+                  content = {post.content}
+                  publishedAt = {post.publishedAt}             
+              />
+            )
+          })}
         </main>
       </div>
     </div> 
