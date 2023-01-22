@@ -8,9 +8,9 @@ import { useState } from "react";
 
 export function Post({ author, publishedAt, content }){
     const [comments, setComments] = useState([
-        1,
-        2,
+        'Gostei muito, parabéns!!!',
     ])
+
     const publishedDateFormated = new Intl.DateTimeFormat('pt-BR',{
         day: '2-digit',
         month: 'short',
@@ -23,10 +23,16 @@ export function Post({ author, publishedAt, content }){
         addSuffix: true
     })
 
+    const [newComment, setNewComment] = useState('') /* declarando o comentário novo como vazio */
+
+    function newCommentChange(){
+        setNewComment(event.target.value) /* Mudando o valor do comentário novo para o valor digitado na textarea */
+    }
+
     function handleCreateNewComment(){
         event.preventDefault() /* impedir comportamento padrão do html de redirecionar */
-        console.log("Oi")
-        setComments([...comments, comments.length + 1])
+        setComments([...comments, newComment]) /* Adcionando o comentário novo aos antigos */
+        setNewComment('') /* Limpar a textarea */
     }
 
     return (
@@ -61,8 +67,7 @@ export function Post({ author, publishedAt, content }){
             <form onSubmit={handleCreateNewComment} className={styles.comentForm}>
                 <strong> Deixe seu Feedback </strong>
         
-                <textarea placeholder="Deixe um comentário"/>
-
+                <textarea name="comment" placeholder="Deixe um comentário" onChange={newCommentChange} value={newComment}/> {/* Ao digitar na textarea, chama essa função */}
                 <footer>
                 <button type="submit">Publicar</button>
                 </footer>
@@ -70,7 +75,7 @@ export function Post({ author, publishedAt, content }){
 
             <div className={styles.commentList}>
                 {comments.map(comment => {
-                    return <Comment />
+                    return <Comment content={comment}/>
                 })}
             </div>
         </article>
