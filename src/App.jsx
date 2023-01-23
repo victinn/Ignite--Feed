@@ -49,6 +49,7 @@ export function App() {
           {posts.map(post => {
             return (
               <Post 
+                  key={post.id} /* Ajuda o react a entender o que ja tava na tela e o que não tava, para aumentar velocidade da execução quando algo precisa ser renderizado novamente */
                   author = {post.author}
                   content = {post.content}
                   publishedAt = {post.publishedAt}             
