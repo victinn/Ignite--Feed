@@ -7,7 +7,7 @@ import { Link } from "phosphor-react";
 import { useState } from "react";
 
 export function Post({ author, publishedAt, content }){
-    const [comments, setComments] = useState([
+    const [comments, setComments] = useState([  /* Comentários e função para alterar eles */
         'Gostei muito, parabéns!!!',
     ])
 
@@ -35,6 +35,14 @@ export function Post({ author, publishedAt, content }){
         setNewComment('') /* Limpar a textarea */
     }
 
+    function deleteComment(commentToDelete){
+        const commentsWithoutDeletedOne = comments.filter(comment => { /* Seguindo o conceito de imutabilidade, estou criando um novo array de comentários sem aquele que foi deletado */
+            return comment != commentToDelete
+        })
+
+        setComments(commentsWithoutDeletedOne)
+    }
+
     return (
         <article className={styles.post}>
             <header>
@@ -54,10 +62,10 @@ export function Post({ author, publishedAt, content }){
             <div className={styles.content}>
                 {content.map(line => {
                     if(line.type == "paragraph"){
-                        return <p>{line.content}</p>
+                        return <p key={line.content}>{line.content}</p>
                     }
                     else if(line.type == "link"){
-                        return <a href="">{line.content}</a>
+                        return <p key={line.content}><a href="">{line.content}</a></p>
                     }
                     
                 })}
@@ -75,7 +83,7 @@ export function Post({ author, publishedAt, content }){
 
             <div className={styles.commentList}>
                 {comments.map(comment => {
-                    return <Comment content={comment}/>
+                    return <Comment key={comment} content={comment} onDeleteComment={deleteComment} /* passando a função como propriedade */ />
                 })}
             </div>
         </article>
