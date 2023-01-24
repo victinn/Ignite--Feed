@@ -26,6 +26,7 @@ export function Post({ author, publishedAt, content }){
     const [newComment, setNewComment] = useState('') /* declarando o comentário novo como vazio */
 
     function newCommentChange(){
+        event.target.setCustomValidity('') /* se não tiver isso, por causa da verificação de inválido não seria enviado nunca */
         setNewComment(event.target.value) /* Mudando o valor do comentário novo para o valor digitado na textarea */
     }
 
@@ -42,6 +43,12 @@ export function Post({ author, publishedAt, content }){
 
         setComments(commentsWithoutDeletedOne)
     }
+
+    function handleNewCommentInvalid(){
+        event.target.setCustomValidity('Esse campo é obrigatório!') /* Alterar mensagem de erro (olhar função newCommentChange) */
+    }
+
+    const isNewCommentEmpty = newComment.length == 0
 
     return (
         <article className={styles.post}>
@@ -75,10 +82,16 @@ export function Post({ author, publishedAt, content }){
             <form onSubmit={handleCreateNewComment} className={styles.comentForm}>
                 <strong> Deixe seu Feedback </strong>
         
-                <textarea name="comment" placeholder="Deixe um comentário" onChange={newCommentChange} value={newComment}/> {/* Ao digitar na textarea, chama essa função */}
+                <textarea 
+                    name="comment" 
+                    placeholder="Deixe um comentário" 
+                    onChange={newCommentChange} /* Ao digitar na textarea, chama essa função */
+                    value={newComment}
+                    required
+                    onInvalid={handleNewCommentInvalid}/> 
                 <footer>
-                <button type="submit">Publicar</button>
-                </footer>
+                <button type="submit" disabled={isNewCommentEmpty} >Publicar</button>
+                </footer>               {/* Não deixar enviar quando não tiver texto */}
             </form>
 
             <div className={styles.commentList}>

@@ -93,8 +93,16 @@
     font-weight: bold;
     cursor: pointer;
 
-    transition: background-color 1.2s;
-    
+    transition: background-color 1.2s;    
+}
+
+.comentForm button[type=submit]:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.comentForm button[type=submit]:not(:disabled):hover{ /* Quando ele não estiver desabilitado*/
+    background-color: var(--green-300);
 }
 
 .comentForm footer{ /* para o botão não aparecer sempre */
@@ -105,10 +113,6 @@
 .comentForm:focus-within footer{ /* Se houver um foco dentro de qualquer elemento do comentForm, aplica isso no footer, que é o botão*/
     visibility: visible;
     max-height: none;
-}
-
-.comentForm button[type=submit]:hover{
-    background-color: var(--green-300);
 }
 
 .commentList{
