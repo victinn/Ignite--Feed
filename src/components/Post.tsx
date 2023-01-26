@@ -7,23 +7,23 @@ import { Link } from "phosphor-react";
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
 
 interface Author{
-    name: string,
-    role: string,
-    avatar: string
+    name: string;
+    role: string;
+    avatar: string;
 }
 
-interface postProps{
-    author: Author,
-    publishedAt: Date,
-    content: content[]
+interface Content{
+    type: 'paragraph' | 'link';
+    content: string;
 }
 
-interface content{
-    type: 'paragraph' | 'link',
-    content: string
+interface PostProps{
+    author: Author;
+    publishedAt: Date;
+    content: Content[];
 }
 
-export function Post({ author, publishedAt, content }: postProps){
+export function Post({ author, publishedAt, content }: PostProps){
     const [comments, setComments] = useState([  /* Comentários e função para alterar eles */
         'Gostei muito, parabéns!!!',
     ])
