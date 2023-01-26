@@ -1,6 +1,6 @@
 # Ignite feed
 
-# Projeto realizado através do curso Ignite da Rocketseat
+### Projeto realizado através do curso Ignite da Rocketseat
 
 ## Funcionalidades
 - Comentar nas publicações
