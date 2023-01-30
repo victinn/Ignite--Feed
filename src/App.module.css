@@ -1,6 +1,6 @@
 .wrapper{
     max-width: 70rem;
-    margin: 2rem auto; /* 2 rem em cima e em baico, auto dos lados pra ficar centralizado */
+    margin: 2rem auto; /* 2 rem em cima e em baixo, auto dos lados pra ficar centralizado */
     padding: 0 1rem; /* pra nao ficar colado nas laterais se diminuir a tela */
 
     display: grid;
